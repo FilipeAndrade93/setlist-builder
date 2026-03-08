@@ -3,6 +3,7 @@ package com.bombazine.setlist_builder.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -36,7 +37,14 @@ public class Song {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
     public boolean isFromSpotify() {
         return spotifyId != null;
+    }
+
+    public boolean isDeleted() {
+        return deletedAt != null;
     }
 }
