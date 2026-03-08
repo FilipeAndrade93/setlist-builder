@@ -23,11 +23,12 @@ public class Song {
     @Column(name = "duration_seconds", nullable = false)
     private int durationSeconds;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "source", nullable = false)
     private SongSource source = SongSource.MANUAL;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "original_song_id")
+    @JoinColumn(name = "original_song_id")
     private Song originalSong;
 
     //Can be NULL for manually added songs
