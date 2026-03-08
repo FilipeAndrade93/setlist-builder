@@ -26,6 +26,12 @@ public class Song {
     @Column(name = "spotify_id", unique = true)
     private String spotifyId;
 
+    @Column(name = "popularity")
+    private int popularity;
+
+    @Column(name = "popularity_synced_at")
+    private LocalDateTime popularitySyncedAt;
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
