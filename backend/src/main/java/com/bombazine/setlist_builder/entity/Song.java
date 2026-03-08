@@ -23,6 +23,13 @@ public class Song {
     @Column(name = "duration_seconds", nullable = false)
     private int durationSeconds;
 
+    @Column(name = "source", nullable = false)
+    private SongSource source = SongSource.MANUAL;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "original_song_id")
+    private Song originalSong;
+
     //Can be NULL for manually added songs
     @Column(name = "spotify_id", unique = true)
     private String spotifyId;
@@ -46,5 +53,9 @@ public class Song {
 
     public boolean isDeleted() {
         return deletedAt != null;
+    }
+
+    public String getFormattedDuration() {
+        return String.format("%d:%02d", durationSeconds / 60, durationSeconds % 60);
     }
 }
