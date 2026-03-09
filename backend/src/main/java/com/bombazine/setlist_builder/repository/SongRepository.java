@@ -15,7 +15,9 @@ public interface SongRepository extends JpaRepository<Song, UUID> {
 
     List<Song> findByDeletedAtIsNullOrderByPopularityDesc();
 
-    Optional<Song> findBySpotifyIdAndDeletedAtIsNull();
+    Optional<Song> findByIdAndDeletedAtIsNull(UUID id);
+
+    Optional<Song> findBySpotifyIdAndDeletedAtIsNull(String spotifyId);
 
     boolean existsBySpotifyIdAndDeletedAtIsNull(String spotifyId);
 }
