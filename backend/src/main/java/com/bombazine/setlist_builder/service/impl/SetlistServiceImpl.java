@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,19 @@ public class SetlistServiceImpl implements SetlistService {
 
     private final SetlistRepository setlistRepository;
     private final SongRepository songRepository;
+
+    @Override
+    public List<SetlistResponse> getAllSetlists() {
+        return setlistRepository.findAllWithSongs().stream().map(SetlistResponse::from).toList();
+    }
+
+    @Override
+    public SetlistResponse getSetlistById(UUID id) {
+        return setlistRepository.findByIdWithSongs(id)
+                .map(SetlistResponse::from)
+                .orElseThrow(() -> new Exceptions.SetlistNotFoundException(id));
+    }
+
 
     @Override
     @Transactional
@@ -60,6 +74,13 @@ public class SetlistServiceImpl implements SetlistService {
                 .build();
 
         return SetlistResponse.from(setlistRepository.save(setlist));
+    }
+
+    @Override
+    public void deleSetlist(UUID id) {
+        Setlist setlist = setlistRepository.findById(id).orElseThrow(() -> new Exceptions.SetlistNotFoundException(id));
+
+        setlistRepository.delete(setlist);
     }
 
     private void checkDuplicate(String venue, LocalDate date) {

@@ -15,10 +15,11 @@ public interface SetlistRepository extends JpaRepository<Setlist, UUID> {
 
     boolean existsByVenueNameAndEventDate(String venueName, LocalDate eventDate);
 
-    @Query("SELECT s FROM Setlist s LEFT JOIN FETCH s.songs ORDER BY s.eventDate DESC")
+    @Query("SELECT DISTINCT s FROM Setlist s LEFT JOIN FETCH s.songs ORDER BY s.eventDate DESC")
     List<Setlist> findAllWithSongs();
 
     @Query("SELECT s FROM Setlist s LEFT JOIN FETCH s.songs WHERE s.id = :id")
     Optional<Setlist> findByIdWithSongs(UUID id);
+
 
 }
