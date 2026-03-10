@@ -1,4 +1,4 @@
-package com.bombazine.setlist_builder.service;
+package com.bombazine.setlist_builder.service.impl;
 
 import com.bombazine.setlist_builder.dto.CreateSetlistRequest;
 import com.bombazine.setlist_builder.dto.GenerateSetlistRequest;
@@ -8,6 +8,8 @@ import com.bombazine.setlist_builder.entity.Song;
 import com.bombazine.setlist_builder.exception.Exceptions;
 import com.bombazine.setlist_builder.repository.SetlistRepository;
 import com.bombazine.setlist_builder.repository.SongRepository;
+import com.bombazine.setlist_builder.service.GenerationStrategy;
+import com.bombazine.setlist_builder.service.SetlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +20,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class SetlistServiceImpl implements SetlistService{
+public class SetlistServiceImpl implements SetlistService {
 
     private final SetlistRepository setlistRepository;
     private final SongRepository songRepository;

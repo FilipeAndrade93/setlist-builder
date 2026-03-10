@@ -1,4 +1,4 @@
-package com.bombazine.setlist_builder.service;
+package com.bombazine.setlist_builder.service.impl;
 
 import com.bombazine.setlist_builder.dto.CreateSongRequest;
 import com.bombazine.setlist_builder.dto.SongResponse;
@@ -7,6 +7,8 @@ import com.bombazine.setlist_builder.entity.Song;
 import com.bombazine.setlist_builder.entity.SongSource;
 import com.bombazine.setlist_builder.exception.Exceptions;
 import com.bombazine.setlist_builder.repository.SongRepository;
+import com.bombazine.setlist_builder.service.SongService;
+import com.bombazine.setlist_builder.service.SpotifyClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class SongServiceImpl implements SongService{
+public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
     private final SpotifyClient spotifyClient;
