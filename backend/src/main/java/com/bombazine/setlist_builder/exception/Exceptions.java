@@ -50,4 +50,14 @@ public final class Exceptions {
             super("Spotify error: " + message, cause);
         }
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public static class UserNotFoundException extends RuntimeException {
+        public UserNotFoundException(UUID id) {
+            super("User not found: " + id);
+        }
+        public UserNotFoundException(String message) {
+            super(message);
+        }
+    }
 }
