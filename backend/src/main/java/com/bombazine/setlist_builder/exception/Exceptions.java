@@ -60,4 +60,11 @@ public final class Exceptions {
             super(message);
         }
     }
+
+    public static class InvalidCredentialsException extends RuntimeException {
+        public InvalidCredentialsException() {
+            super("Invalid username or password");
+        }
+    }
+
 }

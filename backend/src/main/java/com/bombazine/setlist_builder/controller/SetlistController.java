@@ -28,7 +28,7 @@ public class SetlistController {
         return ResponseEntity.ok(setlistService.getAllSetlists());
     }
 
-    @GetMapping("/{id]}")
+    @GetMapping("/{id}")
     public ResponseEntity<SetlistResponse> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(setlistService.getSetlistById(id));
     }

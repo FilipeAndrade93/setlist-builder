@@ -21,20 +21,19 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final AppUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public LoginResponse login(LoginRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.username(), request.password())
-        );
+        AppUser user = userRepository.findByUsernameAndDeletedAtIsNull(request.username())
+                .orElseThrow(() -> new Exceptions.UserNotFoundException(request.username()));
 
-        AppUser user = userRepository.findByUsernameAndDeletedAtIsNull(request.username()).orElseThrow();
+        if (!passwordEncoder.matches(request.password(), user.getPasswordHash())) {
+            throw new Exceptions.InvalidCredentialsException();
+        }
 
         String token = jwtUtil.generateToken(request.username(), user.getRole().name());
-
         return new LoginResponse(token, request.username(), user.getRole().name());
     }
 
