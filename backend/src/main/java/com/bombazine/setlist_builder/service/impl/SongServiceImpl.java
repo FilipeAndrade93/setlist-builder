@@ -1,17 +1,16 @@
 package com.bombazine.setlist_builder.service.impl;
 
-import com.bombazine.setlist_builder.dto.CreateSongRequest;
-import com.bombazine.setlist_builder.dto.LastFmTrackResponse;
-import com.bombazine.setlist_builder.dto.SongResponse;
-import com.bombazine.setlist_builder.dto.SpotifyTrackResponse;
+import com.bombazine.setlist_builder.dto.*;
 import com.bombazine.setlist_builder.entity.Song;
 import com.bombazine.setlist_builder.entity.SongSource;
 import com.bombazine.setlist_builder.exception.Exceptions;
 import com.bombazine.setlist_builder.repository.SongRepository;
 import com.bombazine.setlist_builder.service.LastFmClient;
+import com.bombazine.setlist_builder.service.LastFmSyncService;
 import com.bombazine.setlist_builder.service.SongService;
 import com.bombazine.setlist_builder.service.SpotifyClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +18,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicInteger;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -27,6 +28,7 @@ public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
     private  final LastFmClient lastFmClient;
+    private final LastFmSyncService lastFmSyncService;
 
     @Deprecated
     private final SpotifyClient spotifyClient;
@@ -85,7 +87,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     @Transactional
-    public SongResponse saveSongfromLastFm(String trackName) {
+    public SongResponse saveSongFromLastFm(String trackName) {
         if (songRepository.existsByNameIgnoreCaseAndDeletedAtIsNull(trackName)) {
             throw new Exceptions.SongAlreadySavedException(trackName);
         }
@@ -107,6 +109,49 @@ public class SongServiceImpl implements SongService {
         song.setPopularitySyncedAt(LocalDateTime.now());
 
         return SongResponse.from(songRepository.save(song));
+    }
+
+    @Override
+    @Transactional
+    public SongResponse updateSong(UUID id, UpdateSongRequest request) {
+        Song song = songRepository.findByIdAndDeletedAtIsNull(id).orElseThrow(() -> new Exceptions.SongNotFoundException(id));
+
+        song.setName(request.name());
+        song.setDurationSeconds(request.durationSeconds());
+
+        return SongResponse.from(songRepository.save(song));
+    }
+
+    @Override
+    @Transactional
+    public ImportSummary importTopTracks() {
+        List<LastFmTrackResponse> trackResponseList = lastFmClient.getArtistTopTracks();
+
+        AtomicInteger imported = new AtomicInteger(0);
+        AtomicInteger skipped = new AtomicInteger(0);
+
+        trackResponseList.forEach(track -> {
+            if (songRepository.existsByNameIgnoreCaseAndDeletedAtIsNull(track.name())) {
+                log.debug("'{}' already in library", track.name());
+                skipped.incrementAndGet();
+                return;
+            }
+
+            int durationSeconds = lastFmClient.getTrackDuration(track.name());
+
+            Song song = new Song();
+            song.setName(track.name());
+            song.setDurationSeconds(durationSeconds);
+            song.setSource(SongSource.LASTFM);
+            songRepository.save(song);
+
+            log.info("Imported '{}' from Last.fm", track.name());
+            imported.incrementAndGet();
+        });
+
+        lastFmSyncService.runSync();
+
+        return new ImportSummary(imported.get(), skipped.get(), trackResponseList.size());
     }
 
     @Override

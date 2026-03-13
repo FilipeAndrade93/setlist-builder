@@ -1,9 +1,6 @@
 package com.bombazine.setlist_builder.controller;
 
-import com.bombazine.setlist_builder.dto.CreateSongRequest;
-import com.bombazine.setlist_builder.dto.LastFmTrackResponse;
-import com.bombazine.setlist_builder.dto.SongResponse;
-import com.bombazine.setlist_builder.dto.SpotifyTrackResponse;
+import com.bombazine.setlist_builder.dto.*;
 import com.bombazine.setlist_builder.service.LastFmSyncService;
 import com.bombazine.setlist_builder.service.SongService;
 import jakarta.validation.Valid;
@@ -33,6 +30,11 @@ public class SongController {
         return ResponseEntity.status(201).body(songService.createSong(request));
     }
 
+    @PutMapping("/{id}")
+    public SongResponse updateSong(@PathVariable UUID id, @RequestBody @Valid UpdateSongRequest request) {
+        return songService.updateSong(id, request);
+    }
+
     @Deprecated
     @PostMapping("/spotify/{spotifyId}")
     public ResponseEntity<SongResponse> saveFromSpotify(@PathVariable String spotifyId) {
@@ -52,7 +54,13 @@ public class SongController {
 
     @PostMapping("/lastfm/{trackName}")
     public ResponseEntity<SongResponse> saveFromLastFm(@PathVariable String trackName) {
-        return ResponseEntity.status(201).body(songService.saveSongfromLastFm(trackName));
+        return ResponseEntity.status(201).body(songService.saveSongFromLastFm(trackName));
+    }
+
+    @PostMapping("/lastfm/import")
+    public ResponseEntity<ImportSummary> importFronLastFm() {
+        ImportSummary summary = songService.importTopTracks();
+        return ResponseEntity.ok(summary);
     }
 
     @PostMapping("/lastfm/sync")

@@ -1,9 +1,6 @@
 package com.bombazine.setlist_builder.service;
 
-import com.bombazine.setlist_builder.dto.CreateSongRequest;
-import com.bombazine.setlist_builder.dto.LastFmTrackResponse;
-import com.bombazine.setlist_builder.dto.SongResponse;
-import com.bombazine.setlist_builder.dto.SpotifyTrackResponse;
+import com.bombazine.setlist_builder.dto.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +15,11 @@ public interface SongService {
     @Deprecated
     SongResponse saveSongFromSpotify(String spotifyId);
 
-    SongResponse saveSongfromLastFm(String trackName);
+    SongResponse saveSongFromLastFm(String trackName);
+
+    SongResponse updateSong(UUID id, UpdateSongRequest request);
+
+    ImportSummary importTopTracks();
 
     void deleteSong(UUID id);
 
