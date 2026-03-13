@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+@Deprecated
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -17,7 +18,7 @@ public class SpotifySyncService {
     private final SongRepository songRepository;
     private final SpotifyClient spotifyClient;
 
-    @Scheduled(fixedRate = 86400000) //24 hours
+    //@Scheduled(fixedRate = 86400000) //24 hours
     @Transactional
     public void syncPopularity() {
         log.info("Spotify popularity syn init");

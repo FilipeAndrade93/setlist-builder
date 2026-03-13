@@ -1,0 +1,4 @@
+ALTER TABLE songs ALTER COLUMN source DROP DEFAULT;
+ALTER TABLE songs ALTER COLUMN source TYPE varchar(50) USING source::varchar;
+ALTER TABLE songs ALTER COLUMN source SET DEFAULT 'MANUAL';
+DROP TYPE song_source;

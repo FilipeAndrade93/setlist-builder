@@ -67,4 +67,14 @@ public final class Exceptions {
         }
     }
 
+    @ResponseStatus(HttpStatus.BAD_GATEWAY)
+    public static class LastFmApiException extends RuntimeException {
+        public LastFmApiException(String message) {
+            super(message);
+        }
+        public LastFmApiException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
 }

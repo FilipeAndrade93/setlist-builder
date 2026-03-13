@@ -1,12 +1,14 @@
 package com.bombazine.setlist_builder.service.impl;
 
 import com.bombazine.setlist_builder.dto.CreateSongRequest;
+import com.bombazine.setlist_builder.dto.LastFmTrackResponse;
 import com.bombazine.setlist_builder.dto.SongResponse;
 import com.bombazine.setlist_builder.dto.SpotifyTrackResponse;
 import com.bombazine.setlist_builder.entity.Song;
 import com.bombazine.setlist_builder.entity.SongSource;
 import com.bombazine.setlist_builder.exception.Exceptions;
 import com.bombazine.setlist_builder.repository.SongRepository;
+import com.bombazine.setlist_builder.service.LastFmClient;
 import com.bombazine.setlist_builder.service.SongService;
 import com.bombazine.setlist_builder.service.SpotifyClient;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,9 @@ import java.util.concurrent.CompletableFuture;
 public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
+    private  final LastFmClient lastFmClient;
+
+    @Deprecated
     private final SpotifyClient spotifyClient;
 
     @Override
@@ -53,6 +58,7 @@ public class SongServiceImpl implements SongService {
         return SongResponse.from(songRepository.save(song));
     }
 
+    @Deprecated
     @Override
     public SongResponse saveSongFromSpotify(String spotifyId) {
         if (songRepository.existsBySpotifyIdAndDeletedAtIsNull(spotifyId)) {
@@ -79,6 +85,32 @@ public class SongServiceImpl implements SongService {
 
     @Override
     @Transactional
+    public SongResponse saveSongfromLastFm(String trackName) {
+        if (songRepository.existsByNameIgnoreCaseAndDeletedAtIsNull(trackName)) {
+            throw new Exceptions.SongAlreadySavedException(trackName);
+        }
+
+        List<LastFmTrackResponse> tracks = lastFmClient.getArtistTopTracks();
+
+        LastFmTrackResponse match = tracks.stream()
+                .filter(track -> track.name().equalsIgnoreCase(trackName))
+                .findFirst()
+                .orElseThrow(() -> new Exceptions.LastFmApiException("Track not found in Last.fm top tracks: "+ trackName));
+
+        int durationSeconds = lastFmClient.getTrackDuration((match.name()));
+
+        Song song = new Song();
+        song.setName(match.name());
+        song.setDurationSeconds(durationSeconds);
+        song.setSource(SongSource.LASTFM);
+        song.setPopularity(match.popularity());
+        song.setPopularitySyncedAt(LocalDateTime.now());
+
+        return SongResponse.from(songRepository.save(song));
+    }
+
+    @Override
+    @Transactional
     public void deleteSong(UUID id) {
         Song song = songRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new Exceptions.SongNotFoundException(id));
@@ -86,8 +118,14 @@ public class SongServiceImpl implements SongService {
         song.setDeletedAt(LocalDateTime.now());
     }
 
+    @Deprecated
     @Override
     public CompletableFuture<List<SpotifyTrackResponse>> getSpotifyTopTracks() {
         return spotifyClient.getTopTracks();
+    }
+
+    @Override
+    public List<LastFmTrackResponse> getLastFmTopTracks() {
+        return lastFmClient.getArtistTopTracks();
     }
 }

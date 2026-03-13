@@ -20,4 +20,6 @@ public interface SongRepository extends JpaRepository<Song, UUID> {
     Optional<Song> findBySpotifyIdAndDeletedAtIsNull(String spotifyId);
 
     boolean existsBySpotifyIdAndDeletedAtIsNull(String spotifyId);
+
+    boolean existsByNameIgnoreCaseAndDeletedAtIsNull(String trackName);
 }
