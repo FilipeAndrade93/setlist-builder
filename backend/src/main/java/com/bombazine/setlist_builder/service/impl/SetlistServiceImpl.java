@@ -3,6 +3,7 @@ package com.bombazine.setlist_builder.service.impl;
 import com.bombazine.setlist_builder.dto.CreateSetlistRequest;
 import com.bombazine.setlist_builder.dto.GenerateSetlistRequest;
 import com.bombazine.setlist_builder.dto.SetlistResponse;
+import com.bombazine.setlist_builder.dto.UpdateSetlistRequest;
 import com.bombazine.setlist_builder.entity.Setlist;
 import com.bombazine.setlist_builder.entity.Song;
 import com.bombazine.setlist_builder.exception.Exceptions;
@@ -44,10 +45,8 @@ public class SetlistServiceImpl implements SetlistService {
     public SetlistResponse createSetlist(CreateSetlistRequest request) {
         checkDuplicate(request.venueName(), request.eventDate());
 
-        List<Song> songs = request.songIds().stream()
-                .map(id -> songRepository.findByIdAndDeletedAtIsNull(id)
-                        .orElseThrow(() -> new Exceptions.SongNotFoundException(id)))
-                .toList();
+        List<Song> songs = resolveSongs(request.songIds());
+
         Setlist setlist = Setlist.builder()
                 .venueName(request.venueName())
                 .eventDate(request.eventDate())
@@ -77,7 +76,28 @@ public class SetlistServiceImpl implements SetlistService {
     }
 
     @Override
-    public void deleSetlist(UUID id) {
+    @Transactional
+    public SetlistResponse updateSetlist(UUID id, UpdateSetlistRequest request) {
+        Setlist setlist = setlistRepository.findByIdWithSongs(id).orElseThrow(() -> new Exceptions.SetlistNotFoundException(id));
+
+        boolean venueOrDateChanged = !setlist.getVenueName().equals(request.venueName()) || !setlist.getEventDate().equals(request.eventDate());
+
+        if (venueOrDateChanged) {
+            checkDuplicate(request.venueName(), request.eventDate());
+        }
+
+        List<Song> songs = resolveSongs(request.songIds());
+
+        setlist.setVenueName(request.venueName());
+        setlist.setEventDate(request.eventDate());
+        setlist.getSongs().clear();
+        setlist.getSongs().addAll(songs);
+
+        return SetlistResponse.from(setlistRepository.save(setlist));
+    }
+
+    @Override
+    public void deleteSetlist(UUID id) {
         Setlist setlist = setlistRepository.findById(id).orElseThrow(() -> new Exceptions.SetlistNotFoundException(id));
 
         setlistRepository.delete(setlist);
@@ -87,5 +107,11 @@ public class SetlistServiceImpl implements SetlistService {
         if (setlistRepository.existsByVenueNameAndEventDate(venue, date)) {
             throw new Exceptions.SetlistAlreadyExistsException(venue, date.toString());
         }
+    }
+
+    private List<Song> resolveSongs(List<UUID> songIds) {
+        return songIds.stream()
+                .map(songId -> songRepository.findByIdAndDeletedAtIsNull(songId).orElseThrow(() -> new Exceptions.SongNotFoundException(songId)))
+                .toList();
     }
 }

@@ -3,6 +3,7 @@ package com.bombazine.setlist_builder.controller;
 import com.bombazine.setlist_builder.dto.CreateSetlistRequest;
 import com.bombazine.setlist_builder.dto.GenerateSetlistRequest;
 import com.bombazine.setlist_builder.dto.SetlistResponse;
+import com.bombazine.setlist_builder.dto.UpdateSetlistRequest;
 import com.bombazine.setlist_builder.service.SetlistService;
 import com.bombazine.setlist_builder.service.pdf.PdfService;
 import jakarta.validation.Valid;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -43,9 +43,14 @@ public class SetlistController {
         return ResponseEntity.status(201).body(setlistService.generateSetlist(request));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<SetlistResponse> update(@PathVariable UUID id, @Valid @RequestBody UpdateSetlistRequest request) {
+        return ResponseEntity.ok(setlistService.updateSetlist(id, request));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        setlistService.deleSetlist(id);
+        setlistService.deleteSetlist(id);
         return ResponseEntity.noContent().build();
     }
 

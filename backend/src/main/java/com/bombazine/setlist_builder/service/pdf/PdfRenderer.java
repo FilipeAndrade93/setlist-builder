@@ -88,14 +88,6 @@ public class PdfRenderer {
         }
     }
 
-    // -------------------------------------------------------------------------
-    // Private helpers
-    // -------------------------------------------------------------------------
-
-    /**
-     * Draws the header on a page and returns the y position ready for the
-     * first song row. Page header only present on first page
-     */
     private float drawHeader(PDPageContentStream cs, String headerLine,
                              PDType1Font regular, boolean firstPage)
             throws IOException {
