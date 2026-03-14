@@ -1,4 +1,5 @@
-import { createTheme, type MantineColorsTuple } from "@mantine/core";
+import { createTheme, NavLink, type MantineColorsTuple } from "@mantine/core";
+import navLinkClasses from "./NavLink.module.scss";
 
 const bordeaux: MantineColorsTuple = [
   "#f9ecee",
@@ -41,4 +42,10 @@ export const theme = createTheme({
   },
 
   defaultRadius: "sm",
+
+  components: {
+    NavLink: NavLink.extend({
+      classNames: navLinkClasses,
+    }),
+  },
 });

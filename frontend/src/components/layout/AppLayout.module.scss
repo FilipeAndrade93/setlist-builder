@@ -1,0 +1,62 @@
+.header {
+  background: var(--mantine-color-bordeaux-8);
+  border-bottom: none;
+}
+
+.headerLogo {
+  font-family: var(--font-bombazine), var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-xl);
+  color: var(--mantine-color-gold-4);
+}
+
+.navbar {
+  background: var(--mantine-color-bordeaux-8);
+  border-right: none;
+}
+
+.navbarContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: var(--mantine-spacing-md) var(--mantine-spacing-sm);
+}
+
+.logoWrapper {
+  padding-bottom: var(--mantine-spacing-md);
+  margin-bottom: var(--mantine-spacing-xs);
+  border-bottom: 0.5px solid var(--mantine-color-bordeaux-6);
+  gap: var(--mantine-spacing-xs);
+}
+
+.logo {
+  font-family: var(--font-bombazine), var(--mantine-font-family-headings);
+  font-size: 1.5rem;
+  color: var(--mantine-color-gold-4);
+  line-height: 1;
+  display: block;
+}
+
+.desktopBurger {
+  color: var(--mantine-color-white);
+
+  &:hover {
+    background: var(--mantine-color-bordeaux-6);
+  }
+}
+
+.sectionLabel {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mantine-color-bordeaux-2);
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-xs)
+    var(--mantine-spacing-xs);
+  margin-top: var(--mantine-spacing-sm);
+}
+
+.main {
+  background: var(--mantine-color-white);
+  min-height: 100vh;
+}

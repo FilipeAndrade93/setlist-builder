@@ -21,4 +21,5 @@ Thumbs.db
 frontend/node_modules/
 frontend/dist/
 frontend/.env
-frontend/.env.local
+frontend/.env.local.env.development
+.env.production

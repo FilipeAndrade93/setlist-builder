@@ -20,3 +20,13 @@ body {
   color: var(--mantine-color-black);
   line-height: var(--mantine-line-height);
 }
+
+.mantine-AppShell-navbar {
+  background-color: var(--mantine-color-bordeaux-8) !important;
+  border-right: none !important;
+}
+
+.mantine-AppShell-header {
+  background-color: var(--mantine-color-bordeaux-8) !important;
+  border-bottom: none !important;
+}

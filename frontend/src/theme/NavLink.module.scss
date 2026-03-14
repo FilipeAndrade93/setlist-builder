@@ -1,0 +1,24 @@
+.root {
+  border-radius: var(--mantine-radius-sm);
+  color: var(--mantine-color-white) !important;
+
+  &:hover {
+    background-color: var(--mantine-color-bordeaux-9) !important;
+    color: var(--mantine-color-white) !important;
+  }
+
+  &[data-active] {
+    background-color: var(--mantine-color-bordeaux-9) !important;
+    color: var(--mantine-color-white) !important;
+  }
+}
+
+.label {
+  color: var(--mantine-color-white) !important;
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.section {
+  color: var(--mantine-color-white) !important;
+}
