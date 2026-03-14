@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Bombazine";
+  src: url("/src/assets/fonts/Vintage_Waves.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --font-bombazine: "Bombazine", var(--mantine-font-family-headings);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--mantine-color-white);
+  color: var(--mantine-color-black);
+  line-height: var(--mantine-line-height);
+}

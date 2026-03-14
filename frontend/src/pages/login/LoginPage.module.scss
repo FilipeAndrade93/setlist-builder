@@ -1,0 +1,62 @@
+.container {
+  min-height: 100vh;
+  background: var(--mantine-color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 22.5rem;
+  max-width: 100%;
+  padding: 0 var(--mantine-spacing-md);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--mantine-spacing-xs);
+  margin-bottom: var(--mantine-spacing-xs);
+}
+
+.title {
+  font-family: var(--font-bombazine), var(--mantine-font-family-headings);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--mantine-color-bordeaux-8);
+  margin-bottom: 0.02rem;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: var(--mantine-font-size-sm);
+}
+
+.form {
+  margin-top: var(--mantine-spacing-xl);
+}
+
+.label {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mantine-color-dimmed);
+  margin-bottom: var(--mantine-spacing-xs);
+}
+
+.input {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.submitButton {
+  background: var(--mantine-color-bordeaux-8);
+  font-family: var(--mantine-font-family);
+  letter-spacing: 0.08em;
+  font-size: var(--mantine-font-size-xs);
+
+  &:hover {
+    background: var(--mantine-color-bordeaux-9);
+  }
+}
