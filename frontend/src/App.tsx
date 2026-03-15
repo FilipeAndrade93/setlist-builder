@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login/LoginPage";
 import AppLayout from "./components/layout/AppLayout";
+import HomePage from "./pages/home/HomePage";
 
 const ComingSoon = ({ page }: { page: string }) => (
   <div
@@ -31,14 +32,7 @@ const App = () => {
           </RequireAuth>
         }
       >
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <ComingSoon page="Home" />
-            </RequireAuth>
-          }
-        />
+        <Route path="/" element={<HomePage />} />
       </Route>
     </Routes>
   );

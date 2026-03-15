@@ -37,7 +37,7 @@ export const theme = createTheme({
   fontFamily: "'Inter', system-ui, sans-serif",
   fontFamilyMonospace: "'Inter', monospace",
   headings: {
-    fontFamily: "'Playfair Display', Georgia, serif",
+    fontFamily: "'Outfit', sans-serif",
     fontWeight: "400",
   },
 

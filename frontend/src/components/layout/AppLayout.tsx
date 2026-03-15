@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   IconCloudDownload,
+  IconHome,
   IconLogout,
   IconMusic,
   IconPlaylist,
@@ -30,6 +31,13 @@ const AppLayout = () => {
   const handleLogout = () => {
     logout();
     navigate("/login");
+  };
+
+  const homeItem: NavItem = {
+    label: "home",
+    path: "/",
+    icon: IconHome,
+    section: "home",
   };
 
   const navItems: NavItem[] = [
@@ -107,6 +115,13 @@ const AppLayout = () => {
             <div className={styles.logoWrapper}>
               <Text className={styles.logo}>bombazine</Text>
             </div>
+
+            <NavLink
+              label={homeItem.label}
+              leftSection={<homeItem.icon size={16} />}
+              active={location.pathname === homeItem.path}
+              onClick={() => navigate(homeItem.path!)}
+            />
 
             {renderSection(
               "library",

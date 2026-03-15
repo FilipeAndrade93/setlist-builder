@@ -1,0 +1,192 @@
+.container {
+  padding: var(--mantine-spacing-xl);
+  max-width: 75rem;
+}
+
+.pageTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--mantine-color-bordeaux-8);
+  margin-bottom: var(--mantine-spacing-xl);
+}
+
+.alert {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.statCard {
+  background: var(--mantine-color-bordeaux-8);
+  padding: var(--mantine-spacing-lg);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.statLabel {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mantine-color-bordeaux-3);
+  margin-bottom: var(--mantine-spacing-xs);
+}
+
+.statValue {
+  font-family: var(--mantine-font-family-headings);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--mantine-color-gold-4);
+  line-height: 1;
+}
+
+.statWarning {
+  color: var(--mantine-color-yellow-4);
+}
+
+.statSub {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-white);
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--mantine-spacing-xl);
+
+  @media (max-width: 48em) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section {
+  background: var(--mantine-color-background-primary);
+  border: 0.5px solid var(--mantine-color-bordeaux-2);
+  border-radius: var(--mantine-radius-sm);
+  padding: var(--mantine-spacing-lg);
+}
+
+.sectionTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.topSongs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-md);
+}
+
+.topSongRow {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+}
+
+.topSongRank {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-4);
+  min-width: 2rem;
+}
+
+.topSongInfo {
+  flex: 1;
+}
+
+.topSongName {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-black);
+  margin-bottom: 0.25rem;
+}
+
+.popularityBar {
+  height: 3px;
+  background: var(--mantine-color-bordeaux-1);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.popularityFill {
+  height: 3px;
+  background: var(--mantine-color-bordeaux-8);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.topSongPop {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-6);
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+.setlistPreview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-md);
+}
+
+.setlistHeader {
+  padding-bottom: var(--mantine-spacing-sm);
+  border-bottom: 0.5px solid var(--mantine-color-bordeaux-1);
+}
+
+.setlistVenue {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+}
+
+.setlistMeta {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+  margin-top: 0.25rem;
+}
+
+.setlistSongs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.setlistSongRow {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+  padding: 0.4rem 0;
+  border-bottom: 0.5px solid var(--mantine-color-bordeaux-0);
+}
+
+.setlistSongPos {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-4);
+  min-width: 1.5rem;
+}
+
+.setlistSongName {
+  flex: 1;
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-black);
+}
+
+.setlistSongDuration {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+}
+
+.emptyState {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-bordeaux-4);
+  font-style: italic;
+}
