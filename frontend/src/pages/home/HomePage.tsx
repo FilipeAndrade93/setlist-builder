@@ -49,7 +49,7 @@ const HomePage = () => {
   );
   const topSongs = [...songs]
     .sort((a, b) => b.popularity - a.popularity)
-    .slice(0, 3);
+    .slice(0, 10);
 
   const upcomingSetlist =
     setlists
@@ -119,7 +119,9 @@ const HomePage = () => {
 
       <div className={styles.grid}>
         <div className={styles.section}>
-          <Text className={styles.sectionTitle}>top songs</Text>
+          <Text className={styles.sectionTitle}>
+            top songs (% total streams)
+          </Text>
           <div className={styles.topSongs}>
             {topSongs.map((song, i) => (
               <div key={song.id} className={styles.topSongRow}>
