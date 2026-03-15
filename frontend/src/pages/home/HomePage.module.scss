@@ -154,6 +154,13 @@
   gap: 0.5rem;
   max-height: 20rem;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .setlistSongRow {

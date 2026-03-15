@@ -1,0 +1,265 @@
+.container {
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
+  max-width: 75rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--mantine-spacing-xl);
+  flex-wrap: wrap;
+  gap: var(--mantine-spacing-sm);
+
+  @media (max-width: 48em) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.pageTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--mantine-color-bordeaux-8);
+  margin: 0;
+  line-height: 1;
+}
+
+.pageMeta {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+  margin-top: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  gap: var(--mantine-spacing-sm);
+  flex-wrap: wrap;
+
+  @media (max-width: 48em) {
+    width: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.actionButton {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  letter-spacing: 0.03em;
+}
+
+.tableWrapper {
+  border: 0.5px solid var(--mantine-color-bordeaux-2);
+  border-radius: var(--mantine-radius-sm);
+  overflow: hidden;
+  max-height: calc(100vh - 14rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 48em) {
+    display: none;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mantine-font-family);
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.th {
+  text-align: left;
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mantine-color-bordeaux-5);
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  border-bottom: 0.5px solid var(--mantine-color-bordeaux-2);
+  background: var(--mantine-color-bordeaux-0);
+
+  &.hiddenMd {
+    @media (max-width: 64em) {
+      display: none;
+    }
+  }
+}
+
+.row {
+  &:hover td {
+    background: var(--mantine-color-bordeaux-0);
+  }
+
+  &:not(:last-child) td {
+    border-bottom: 0.5px solid var(--mantine-color-bordeaux-1);
+  }
+}
+
+.td {
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  vertical-align: middle;
+
+  &.hiddenMd {
+    @media (max-width: 64em) {
+      display: none;
+    }
+  }
+}
+
+.songName {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-black);
+}
+
+.warnIcon {
+  color: var(--mantine-color-yellow-6);
+  flex-shrink: 0;
+}
+
+.duration {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-bordeaux-6);
+  font-variant-numeric: tabular-nums;
+}
+
+.popularityCell {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+}
+
+.popularityBar {
+  width: 6rem;
+  height: 3px;
+  background: var(--mantine-color-bordeaux-1);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.popularityFill {
+  height: 3px;
+  background: var(--mantine-color-bordeaux-8);
+  border-radius: var(--mantine-radius-sm);
+}
+
+.popularityValue {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-6);
+  min-width: 2.5rem;
+}
+
+.badge {
+  font-size: var(--mantine-font-size-xs);
+  letter-spacing: 0.05em;
+}
+
+.rowActions {
+  display: flex;
+  gap: var(--mantine-spacing-xs);
+  justify-content: flex-end;
+}
+
+.editInput {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.durationInputs {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+}
+
+.durationSeparator {
+  font-weight: 500;
+  line-height: 1;
+}
+
+.cardList {
+  display: none;
+  flex-direction: column;
+  gap: var(--mantine-spacing-sm);
+
+  @media (max-width: 48em) {
+    display: flex;
+  }
+}
+
+.card {
+  background: var(--mantine-color-white);
+  border: 0.5px solid var(--mantine-color-bordeaux-2);
+  border-radius: var(--mantine-radius-sm);
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--mantine-spacing-xs);
+}
+
+.cardName {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-black);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-md);
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.cardDuration {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-6);
+  font-variant-numeric: tabular-nums;
+}
+
+.cardPopularity {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  flex: 1;
+}
+
+.cardEditArea {
+  margin-top: var(--mantine-spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-xs);
+}
+
+.cardEditRow {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+}
+
+.modalTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+}

@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login/LoginPage";
 import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./pages/home/HomePage";
+import SongsPage from "./pages/songs/SongsPage";
 
 const ComingSoon = ({ page }: { page: string }) => (
   <div
@@ -33,6 +34,7 @@ const App = () => {
         }
       >
         <Route path="/" element={<HomePage />} />
+        <Route path="/songs" element={<SongsPage />} />
       </Route>
     </Routes>
   );
