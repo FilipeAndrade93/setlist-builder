@@ -354,7 +354,6 @@ const SongsPage = () => {
         </table>
       </div>
 
-      {/* ── Card layout (below sm) ── */}
       <div className={styles.cardList}>
         {songs.map((song) => (
           <div key={song.id} className={styles.card}>
