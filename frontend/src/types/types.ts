@@ -90,3 +90,8 @@ export interface UserResponse {
 export interface ResetPasswordRequest {
   newPassword: string;
 }
+
+export interface RegisterRequest {
+  username: string;
+  password: string;
+}

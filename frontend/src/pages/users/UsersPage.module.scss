@@ -1,0 +1,133 @@
+.container {
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
+  max-width: 75rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--mantine-spacing-xl);
+
+  @media (max-width: 48em) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--mantine-spacing-sm);
+  }
+}
+
+.pageTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--mantine-color-bordeaux-8);
+  margin: 0;
+  line-height: 1;
+}
+
+.pageMeta {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+  margin-top: 0.25rem;
+}
+
+.actionButton {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+
+  @media (max-width: 48em) {
+    width: 100%;
+  }
+}
+
+.tableWrapper {
+  border: 0.5px solid var(--mantine-color-bordeaux-2);
+  border-radius: var(--mantine-radius-sm);
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mantine-font-family);
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.th {
+  text-align: left;
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mantine-color-bordeaux-5);
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  border-bottom: 0.5px solid var(--mantine-color-bordeaux-2);
+  background: var(--mantine-color-bordeaux-0);
+
+  &.hiddenSm {
+    @media (max-width: 48em) {
+      display: none;
+    }
+  }
+}
+
+.row {
+  &:hover td {
+    background: var(--mantine-color-bordeaux-0);
+  }
+
+  &:not(:last-child) td {
+    border-bottom: 0.5px solid var(--mantine-color-bordeaux-1);
+  }
+}
+
+.td {
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  vertical-align: middle;
+  background: var(--mantine-color-white);
+
+  &.hiddenSm {
+    @media (max-width: 48em) {
+      display: none;
+    }
+  }
+}
+
+.username {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-black);
+  font-weight: 500;
+}
+
+.badge {
+  font-size: var(--mantine-font-size-xs);
+  letter-spacing: 0.05em;
+}
+
+.createdAt {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-bordeaux-5);
+}
+
+.rowActions {
+  display: flex;
+  gap: var(--mantine-spacing-xs);
+  justify-content: flex-end;
+}
+
+.modalTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+}
