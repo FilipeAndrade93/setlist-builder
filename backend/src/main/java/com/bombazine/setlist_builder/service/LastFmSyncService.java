@@ -1,5 +1,6 @@
 package com.bombazine.setlist_builder.service;
 
+import com.bombazine.setlist_builder.entity.SongSource;
 import com.bombazine.setlist_builder.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,13 @@ public class LastFmSyncService {
             song.setPopularitySyncedAt(LocalDateTime.now());
 
             log.debug("'{}' playcount: {}, popularity: {}%", song.getName(), stats.playcount(), popularity);
+        });
+
+        songRepository.findByDeletedAtIsNull().forEach(song ->{
+            if(song.getSource() == SongSource.ARRANGEMENT && song.getOriginalSong() != null) {
+                song.setPopularity(song.getOriginalSong().getPopularity());
+                log.debug("Updated arrangement '{}' popularity to {}% from original '{}'", song.getName(), song.getPopularity(), song.getOriginalSong().getName());
+            }
         });
     }
 }

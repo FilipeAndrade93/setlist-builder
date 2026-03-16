@@ -53,6 +53,7 @@ public class SongServiceImpl implements SongService {
                     .orElseThrow(() -> new Exceptions.SongNotFoundException(request.originalSongId()));
             song.setOriginalSong(original);
             song.setSource(SongSource.ARRANGEMENT);
+            song.setPopularity(original.getPopularity());
         } else {
             song.setSource(SongSource.MANUAL);
         }
