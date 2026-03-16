@@ -3,7 +3,6 @@ import type React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-  IconCloudDownload,
   IconHome,
   IconLogout,
   IconMusic,
@@ -55,12 +54,6 @@ const AppLayout = () => {
       icon: IconWand,
       section: "tools",
       onClick: openGenerateModal,
-    },
-    {
-      label: "import",
-      icon: IconCloudDownload,
-      section: "tools",
-      onClick: () => {},
     },
   ];
 
