@@ -13,6 +13,7 @@ import {
 } from "@tabler/icons-react";
 import styles from "./AppLayout.module.scss";
 import { AppShell, Burger, Group, NavLink, Text } from "@mantine/core";
+import { useGenerateModal } from "../../hooks/useGenerateModal";
 
 interface NavItem {
   label: string;
@@ -27,6 +28,7 @@ const AppLayout = () => {
   const { logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { openGenerateModal } = useGenerateModal();
 
   const handleLogout = () => {
     logout();
@@ -48,7 +50,12 @@ const AppLayout = () => {
       icon: IconPlaylist,
       section: "library",
     },
-    { label: "generate", icon: IconWand, section: "tools", onClick: () => {} },
+    {
+      label: "generate",
+      icon: IconWand,
+      section: "tools",
+      onClick: openGenerateModal,
+    },
     {
       label: "import",
       icon: IconCloudDownload,

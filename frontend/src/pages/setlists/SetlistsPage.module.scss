@@ -1,0 +1,293 @@
+.container {
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
+  max-width: 75rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--mantine-spacing-xl);
+
+  @media (max-width: 48em) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--mantine-spacing-sm);
+  }
+}
+
+.pageTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--mantine-color-bordeaux-8);
+  margin: 0;
+  line-height: 1;
+}
+
+.pageMeta {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+  margin-top: 0.25rem;
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--mantine-spacing-sm);
+
+  @media (max-width: 48em) {
+    width: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.actionButton {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+
+  @media (max-width: 48em) {
+    width: 100%;
+  }
+}
+
+.emptyState {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-bordeaux-4);
+  font-style: italic;
+  padding: var(--mantine-spacing-xl) 0;
+}
+
+/* ── Setlist list ──────────────────────────────────────── */
+
+.setlistList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-sm);
+}
+
+.setlistItem {
+  border: 0.5px solid var(--mantine-color-bordeaux-2);
+  border-radius: var(--mantine-radius-sm);
+  overflow: hidden;
+}
+
+.setlistRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--mantine-spacing-md);
+  cursor: pointer;
+  background: var(--mantine-color-white);
+
+  &:hover {
+    background: var(--mantine-color-bordeaux-0);
+  }
+}
+
+.setlistRowLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+}
+
+.setlistRowRight {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+}
+
+.chevron {
+  color: var(--mantine-color-bordeaux-5);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.setlistVenue {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  color: var(--mantine-color-black);
+}
+
+.setlistMeta {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+  margin-top: 2px;
+}
+
+/* ── Expanded detail ───────────────────────────────────── */
+
+.expandedDetail {
+  border-top: 0.5px solid var(--mantine-color-bordeaux-2);
+  background: var(--mantine-color-bordeaux-0);
+  padding: var(--mantine-spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-sm);
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+
+  @media (max-width: 48em) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.detailHeaderInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+}
+
+.detailVenue {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+}
+
+.detailMeta {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-5);
+}
+
+.headerEditRow {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.headerInput {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.detailActions {
+  display: flex;
+  gap: var(--mantine-spacing-xs);
+  flex-shrink: 0;
+
+  @media (max-width: 48em) {
+    width: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+/* ── Song rows ─────────────────────────────────────────── */
+
+.songRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
+  background: var(--mantine-color-white);
+  border: 0.5px solid var(--mantine-color-bordeaux-1);
+  border-radius: var(--mantine-radius-sm);
+  gap: var(--mantine-spacing-sm);
+}
+
+.songRowLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  flex: 1;
+  min-width: 0;
+}
+
+.songRowRight {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+  flex-shrink: 0;
+}
+
+.dragHandle {
+  color: var(--mantine-color-bordeaux-3);
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.posInput {
+  font-family: var(--mantine-font-family);
+  font-size: var(--mantine-font-size-xs);
+  text-align: center;
+}
+
+.songRowName {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.songRowDuration {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-bordeaux-6);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* ── Add song ──────────────────────────────────────────── */
+
+.addSongRow {
+  margin-top: var(--mantine-spacing-xs);
+}
+
+.addSongSelect {
+  width: 100%;
+}
+
+/* ── Footer ────────────────────────────────────────────── */
+
+.detailFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--mantine-spacing-xs);
+  border-top: 0.5px solid var(--mantine-color-bordeaux-2);
+}
+
+.totalDuration {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-bordeaux-7);
+  font-weight: 500;
+}
+
+.draftBadge {
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-yellow-7);
+  background: var(--mantine-color-yellow-1);
+  border: 0.5px solid var(--mantine-color-yellow-3);
+  border-radius: var(--mantine-radius-sm);
+  padding: 2px 8px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Modal ─────────────────────────────────────────────── */
+
+.modalTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+}

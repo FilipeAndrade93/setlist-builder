@@ -3,18 +3,8 @@ import LoginPage from "./pages/login/LoginPage";
 import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./pages/home/HomePage";
 import SongsPage from "./pages/songs/SongsPage";
-
-const ComingSoon = ({ page }: { page: string }) => (
-  <div
-    style={{
-      padding: "2rem",
-      fontFamily: "'Inter', sans-serif",
-      color: "#888",
-    }}
-  >
-    {page} — coming soon
-  </div>
-);
+import SetlistsPage from "./pages/setlists/SetlistsPage";
+import { GenerateModalProvider } from "./context/GenerateModalProvider";
 
 const RequireAuth = ({ children }: { children: React.ReactNode }) => {
   const token = localStorage.getItem("token");
@@ -24,19 +14,23 @@ const RequireAuth = ({ children }: { children: React.ReactNode }) => {
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route
-        element={
-          <RequireAuth>
-            <AppLayout />
-          </RequireAuth>
-        }
-      >
-        <Route path="/" element={<HomePage />} />
-        <Route path="/songs" element={<SongsPage />} />
-      </Route>
-    </Routes>
+    <GenerateModalProvider>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          element={
+            <RequireAuth>
+              <AppLayout />
+            </RequireAuth>
+          }
+        >
+          <Route path="/" element={<HomePage />} />
+          <Route path="/songs" element={<SongsPage />} />
+          <Route path="/setlists" element={<SetlistsPage />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </GenerateModalProvider>
   );
 };
 

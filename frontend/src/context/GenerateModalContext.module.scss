@@ -1,0 +1,16 @@
+.modalTitle {
+  font-family: var(--mantine-font-family-headings);
+  font-size: var(--mantine-font-size-lg);
+  color: var(--mantine-color-bordeaux-8);
+}
+
+.durationInputs {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+}
+
+.durationSeparator {
+  font-weight: 500;
+  line-height: 1;
+}

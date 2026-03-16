@@ -96,6 +96,7 @@ public class SetlistServiceImpl implements SetlistService {
         return SetlistResponse.from(setlistRepository.save(setlist));
     }
 
+    @Transactional
     @Override
     public void deleteSetlist(UUID id) {
         Setlist setlist = setlistRepository.findById(id).orElseThrow(() -> new Exceptions.SetlistNotFoundException(id));
