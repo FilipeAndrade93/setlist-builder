@@ -60,6 +60,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex) {
+        return error(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     //Helper method to avoid code repetition of ResponseEntity construction
     private ResponseEntity<ErrorResponse> error(String message, HttpStatus status) {
         return ResponseEntity.status(status)

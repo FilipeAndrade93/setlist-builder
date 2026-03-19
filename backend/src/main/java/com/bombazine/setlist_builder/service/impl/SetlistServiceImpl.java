@@ -91,6 +91,7 @@ public class SetlistServiceImpl implements SetlistService {
         setlist.setVenueName(request.venueName());
         setlist.setEventDate(request.eventDate());
         setlist.getSongs().clear();
+        setlistRepository.saveAndFlush(setlist);
         setlist.getSongs().addAll(songs);
 
         return SetlistResponse.from(setlistRepository.save(setlist));
