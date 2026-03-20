@@ -75,7 +75,14 @@ const AppLayout = () => {
           label={item.label}
           leftSection={<item.icon size={16} />}
           active={item.path ? location.pathname === item.path : false}
-          onClick={item.path ? () => navigate(item.path!) : item.onClick}
+          onClick={() => {
+            if (item.path) {
+              navigate(item.path);
+            } else if (item.onClick) {
+              item.onClick();
+            }
+            if (mobileOpened) toggleMobile();
+          }}
         />
       ))}
     </>
@@ -120,7 +127,10 @@ const AppLayout = () => {
               label={homeItem.label}
               leftSection={<homeItem.icon size={16} />}
               active={location.pathname === homeItem.path}
-              onClick={() => navigate(homeItem.path!)}
+              onClick={() => {
+                navigate(homeItem.path!);
+                if (mobileOpened) toggleMobile();
+              }}
             />
 
             {renderSection(
@@ -137,7 +147,10 @@ const AppLayout = () => {
           <NavLink
             label="logout"
             leftSection={<IconLogout size={16} />}
-            onClick={handleLogout}
+            onClick={() => {
+              handleLogout();
+              if (mobileOpened) toggleMobile();
+            }}
             className={styles.logoutItem}
           />
         </div>

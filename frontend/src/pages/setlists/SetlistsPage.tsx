@@ -136,6 +136,8 @@ const SetlistsPage = () => {
   const [newVenue, setNewVenue] = useState("");
   const [newDate, setNewDate] = useState<string | null>(null);
 
+  const [searchValue, setSearchValue] = useState<string | null>(null);
+
   const { openGenerateModal, registerOnGenerated } = useGenerateModal();
 
   const sensors = useSensors(
@@ -197,6 +199,7 @@ const SetlistsPage = () => {
     setDraft((prev) =>
       prev ? { ...prev, songs: [...prev.songs, song] } : prev,
     );
+    setSearchValue(null);
   };
 
   const handleDraftRemoveSong = (songId: string) => {
@@ -303,6 +306,7 @@ const SetlistsPage = () => {
     const song = songs.find((song) => song.id === songId);
     if (!song) return;
     setExpandedSongs((prev) => [...prev, song]);
+    setSearchValue(null);
   };
 
   const handleSave = async () => {
@@ -517,7 +521,8 @@ const SetlistsPage = () => {
                     .sort((a, b) => b.popularity - a.popularity)
                     .map((s) => ({ value: s.id, label: s.name }))}
                   onChange={handleDraftAddSong}
-                  value={null}
+                  value={searchValue}
+                  onSearchChange={setSearchValue}
                   searchable
                   clearable
                   size="sm"
@@ -701,7 +706,8 @@ const SetlistsPage = () => {
                         .sort((a, b) => b.popularity - a.popularity)
                         .map((song) => ({ value: song.id, label: song.name }))}
                       onChange={handleAddSong}
-                      value={null}
+                      value={searchValue}
+                      onSearchChange={setSearchValue}
                       searchable
                       clearable
                       size="sm"
