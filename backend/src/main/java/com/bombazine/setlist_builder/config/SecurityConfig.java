@@ -64,7 +64,8 @@ public class SecurityConfig {
         CorsConfiguration configurationSource = new CorsConfiguration();
         configurationSource.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "http://127.0.0.1:5173"
+                "http://127.0.0.1:5173",
+                "https://setlist-builder.vercel.app"
         )); //Vite
         configurationSource.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configurationSource.setAllowedHeaders(List.of("*"));
