@@ -2,6 +2,7 @@
 backend/target/
 backend/*.class
 backend/.mvn/
+!backend/.mvn/wrapper/maven-wrapper.jar
 
 # IntelliJ
 .idea/
